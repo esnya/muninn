@@ -1,4 +1,2 @@
 node_modules
-/dist
-/tesseract-ocr
-/data
+dist
