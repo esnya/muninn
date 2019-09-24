@@ -1,30 +1,32 @@
-<template>
-  <v-app>
-    <v-app-bar app>
-      <v-toolbar-title class="headline text-uppercase">
-        <span>Vuetify</span>
-        <span class="font-weight-light">MATERIAL DESIGN</span>
-      </v-toolbar-title>
-      <v-spacer></v-spacer>
-      <v-btn text href="https://github.com/vuetifyjs/vuetify/releases/latest" target="_blank">
-        <span class="mr-2">Latest Release</span>
-      </v-btn>
-    </v-app-bar>
-
-    <v-content>
-      <HelloWorld />
-    </v-content>
-  </v-app>
+<template lang="pug">
+  v-app
+    v-app-bar(
+      app
+      dark
+      color="primary"
+    )
+      v-toolbar-title.headline muninn
+    v-content
+      v-row
+        v-col
+          await(:promise="recorder")
+            template(v-slot="{ value }")
+              recorder-view(:recorder="value")
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HelloWorld from './components/HelloWorld.vue';
+import Await from './components/Await.vue';
+import RecorderView from './components/RecorderView.vue';
+import Recorder from './Recorder';
 
 @Component({
   components: {
-    HelloWorld,
+    Await,
+    RecorderView,
   },
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  readonly recorder = Recorder.create();
+}
 </script>
